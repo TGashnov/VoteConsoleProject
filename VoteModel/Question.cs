@@ -6,9 +6,6 @@ namespace VoteModel
     {
         public string Text { get; set; }
 
-        public override string ToString()
-        {
-            return Text;
-        }
+        public string Note { get; set; }
     }
 }

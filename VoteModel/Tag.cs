@@ -6,7 +6,7 @@ namespace VoteModel
 {
     public class Tag
     {
-        public string TagText { get; }
+        public string TagText { get; set; }
 
         public Tag(string tag)
         {
@@ -20,7 +20,7 @@ namespace VoteModel
 
         public override bool Equals(object obj)
         {
-            return ToString() == obj.ToString();
+            return ToString().ToLower() == obj.ToString().ToLower();
         }
     }
 }

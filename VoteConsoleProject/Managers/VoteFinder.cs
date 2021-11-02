@@ -3,42 +3,69 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using VoteModel;
+using VoteConsoleProject.Validation;
 
 namespace VoteProject.Managers
 {
     class VoteFinder
     {
-        List<string> tags = new List<string>();
+        static List<string> tags = new List<string>();
+        static string question = "";
+        static List<string> answers = new List<string>();
 
-        public void AddTag(string tag)
+        public static void SearchByQuestion()
         {
-            tags.Add(tag);
+            question = InputControl.FindQuestion();
         }
-        public int TagsCount => tags.Count;
-        public void RemoveEmptiness() => tags.Remove("");
 
-        public List<Vote> SearchByTags(List<Vote> votes)
+        public static void SearchByAnswers()
         {
+            answers = InputControl.SearchByAnswers();
+        }
+
+        public static void SearchByTags()
+        {
+            tags = InputControl.SearchByTags();
+        }
+
+        public static IEnumerable<Vote> Search(IEnumerable<Vote> list)
+        {
+            List<Vote> votes = (List<Vote>)list;
             List<Vote> foundVotes = new List<Vote>();
             for (int i = 0; i < votes.Count; i++)
             {
-                foreach (string tag in tags)
+                if (answers.Count != 0)
                 {
-                    if (votes[i].TagsContain(new Tag(tag)))
+                    foreach (string answer in answers)
                     {
-                        foundVotes.Add(votes[i]);
-                        break;
+                        if (votes[i].Answers.Contains(new Answer(answer)))
+                        {
+                            foundVotes.Add(votes[i]);
+                            break;
+                        }
                     }
                 }
+                else if (tags.Count != 0)
+                {
+                    foreach (string tag in tags)
+                    {
+                        if (votes[i].Tags.Contains(new Tag(tag)))
+                        {
+                            foundVotes.Add(votes[i]);
+                            break;
+                        }
+                    }
+                }
+                else if (question != "")
+                {
+                    foundVotes = votes.Where(vote => vote.Question.Text.Contains(question)).ToList();
+                }
             }
+            question = "";
+            answers.Clear();
+            tags.Clear();
             return foundVotes;
         }
 
-        public void ClearTags() => tags.Clear();
-
-        public void PrintVote(List<Vote> votes, int index)
-        {
-            Console.WriteLine(votes[index]);
-        }
     }
 }

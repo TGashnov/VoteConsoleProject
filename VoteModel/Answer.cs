@@ -15,6 +15,12 @@ namespace VoteModel
             AnswerText = answer;
         }
 
+        public Answer(string answer, int number)
+        {
+            AnswerText = answer;
+            NumberOfVoters = number;
+        }
+
         public override string ToString()
         {
             return AnswerText;
@@ -22,7 +28,7 @@ namespace VoteModel
 
         public override bool Equals(object obj)
         {
-            return ToString() == obj.ToString();
+            return ToString().ToLower() == obj.ToString().ToLower();
         }
     }
 }

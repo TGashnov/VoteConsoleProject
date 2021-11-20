@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Tag]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Text] NVARCHAR(100) NOT NULL,
+)

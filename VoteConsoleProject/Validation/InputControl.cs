@@ -7,6 +7,20 @@ namespace VoteConsoleProject.Validation
 {
     public static class InputControl
     {
+        public static bool ReadYesNo()
+        {
+            while (true)
+            {
+                Console.WriteLine("Нажмите Enter, если согласны. Если нет, то Backspace");
+                var input = Console.ReadKey().Key;
+                if (input == ConsoleKey.Enter)
+                    return true;
+                else if (input == ConsoleKey.Backspace)
+                    return false;
+                else
+                    Console.WriteLine("Пожалуйста, нажмите только Enter или Backspace");
+            }
+        }
         public static string FillInQuestion()
         {
             Console.WriteLine("Введите вопрос для голосования");

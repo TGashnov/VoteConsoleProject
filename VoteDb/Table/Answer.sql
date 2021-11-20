@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Answer]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Text] NVARCHAR(100) NOT NULL, 
+    [NumberOfVoters] INT NOT NULL DEFAULT 0, 
+    [VoteId] INT NOT NULL FOREIGN KEY REFERENCES [Vote]([Id]) 
+)

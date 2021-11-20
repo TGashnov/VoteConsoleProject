@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="97b6b4e1-c340-4966-972f-0c02296148fe" ChangeDateTime="11/19/2021 14:13:08">
+    <Property Name="ElementName" Value="[dbo].[Tag].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Tag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Text" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="35ec94f5-cc4f-4dba-ad4f-811fdb2b1a7f" ChangeDateTime="11/19/2021 14:13:13">
+    <Property Name="ElementName" Value="[dbo].[Answer].[Answer]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Answer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Text" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="153d07b3-7f96-4749-8c83-643396480592" ChangeDateTime="11/19/2021 15:11:48">
+    <Property Name="ElementName" Value="[dbo].[Vote_Tag].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Vote_Tag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Vote" />
+  </Operation>
+</Operations>

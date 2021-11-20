@@ -8,21 +8,6 @@ namespace VoteConsoleProject.Validation
 {
     static class FileValidator
     {
-        public static bool ReadYesNo()
-        {
-            while (true)
-            {
-                Console.WriteLine("Нажмите Enter, если согласны. Если нет, то Backspace");
-                var input = Console.ReadKey().Key;
-                if (input == ConsoleKey.Enter)
-                    return true;
-                else if (input == ConsoleKey.Backspace)
-                    return false;
-                else
-                    Console.WriteLine("Пожалуйста, нажмите только Enter или Backspace");
-            }
-        }
-
         public static FileTypes ReadFileType()
         {
             Console.Write("Введите тип файла (xml/json): ");
@@ -50,7 +35,7 @@ namespace VoteConsoleProject.Validation
                 if (File.Exists(fileName))
                 {
                     Console.Write("Указанный файл существует. Перезаписать?");
-                    if (!ReadYesNo())
+                    if (!InputControl.ReadYesNo())
                     {
                         continue;
                     }

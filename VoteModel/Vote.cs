@@ -17,18 +17,8 @@ namespace VoteModel
         public DateTime Published { get; private set; }
 
         public int NumberOfVotersForVote { get; private set; } = 0;
+        public VoteStatus Status { get; private set; } = VoteStatus.Preparation;
 
-        ////private double voteRating;
-        //public double VoteRating
-        //{
-        //    get => VoteRating;
-        //    set
-        //    {
-        //        TimeSpan ts = DateTime.Now - Created;
-        //        double day = Math.Ceiling(ts.TotalDays);
-        //        VoteRating = NumberOfVotersForVote / day;
-        //    }
-        //}
 
         public Vote(string question,  List<Answer> answers, List<Tag> tags, string note = null)
         {
@@ -45,7 +35,8 @@ namespace VoteModel
             Answers = answers.ToList();
             Tags = tags.ToList();
             Status = status;
-            FinishPreparation();
+            if (status == VoteStatus.Published) FinishPreparation();
+            if (status == VoteStatus.Closed) Close();
         }
 
         public Vote(string question, List<Answer> answers, List<Tag> tags, VoteStatus status, DateTime created, DateTime published, int number, string note = null)
@@ -106,8 +97,6 @@ namespace VoteModel
             Tags.Clear();
             Tags.InsertRange(0, list);
         }
-
-        public VoteStatus Status { get; private set; } = VoteStatus.Preparation;
 
         public void FinishPreparation()
         {

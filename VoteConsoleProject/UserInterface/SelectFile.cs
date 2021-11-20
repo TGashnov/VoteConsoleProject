@@ -35,7 +35,7 @@ namespace VoteConsoleProject.UserInterface
             Console.Clear();
             Console.WriteLine($"{title}: загрузка из файла");
             Console.WriteLine("Внимание! Все существующие данные будут удалены и перезаписаны из файла. Продолжить?");
-            if (!FileValidator.ReadYesNo())
+            if (!InputControl.ReadYesNo())
             {
                 return null;
             }

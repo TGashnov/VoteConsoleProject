@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Vote_Tag]
+(
+	[Vote] INT NOT NULL FOREIGN KEY REFERENCES Vote(Id), 
+    [Tag] INT NOT NULL FOREIGN KEY REFERENCES Tag(Id)
+)

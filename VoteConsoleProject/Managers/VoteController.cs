@@ -28,25 +28,35 @@ namespace VoteProject.Managers
 
         bool isOrderByDateDesc = false;
         bool isOrderByRating = false;
+        bool isPreparation = false;
+        bool isSearch = false;
 
         public List<Vote> OrderedVotes
         {
             get
             {
                 var votes = Votes;
+                if(isSearch)
+                {
+                    votes = (List<Vote>)VoteFinder.Search(Votes);
+                }
+                if (isPreparation)
+                {
+                    votes.Where(vote => vote.Status == VoteStatus.Preparation).ToList();
+                }
                 if (isOrderByRating)
                 {
-                    votes.OrderByDescending(vote => vote.VoteRating());
+                    votes.OrderByDescending(vote => vote.VoteRating()).ToList();
                 }
                 if (isOrderByDateDesc)
                 {
-                    votes.OrderByDescending(vote => vote.Published);
+                    votes.OrderByDescending(vote => vote.Published).ToList();
                 }
                 else
                 {
-                    votes.OrderBy(vote => vote.Published);
+                    votes.OrderBy(vote => vote.Published).ToList();
                 }
-                return votes.ToList();
+                return votes;
             }
         }
 
@@ -128,26 +138,25 @@ namespace VoteProject.Managers
 
         void ChangeVote()
         {
-            Console.Clear();
-            List<Vote> list = Votes.Where(vote => vote.Status == VoteStatus.Preparation).ToList();
-            if (list.Count == 0)
+            isPreparation = true;
+            if (OrderedVotes.Count == 0)
             {
                 Console.WriteLine("Пока нет доступных для редактирования голосований. Нажмите любую клавишу, чтобы продолжить.");
                 Console.ReadKey();
                 return;
             }
-            while (true)
-            {
-                //SelectFromList<Vote> sfl = new SelectFromList<Vote>(() => list);
-                //Vote vote = sfl.SelectedNode;
-                SelectFoundVote = new SelectFromList<Vote>(() => list);
-                ChangeMenu.Print();
-                table.Print(list, FoundedVote);
-                ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Tab) break;
-                ChangeMenu.Action(key);
-                Console.Clear();
-            }
+            //while (true)
+            //{
+            //    //SelectFromList<Vote> sfl = new SelectFromList<Vote>(() => list);
+            //    //Vote vote = sfl.SelectedNode;
+            //    SelectFoundVote = new SelectFromList<Vote>(() => list);
+            //    ChangeMenu.Print();
+            //    table.Print(list, FoundedVote);
+            //    ConsoleKey key = Console.ReadKey().Key;
+            //    if (key == ConsoleKey.Tab) break;
+            //    ChangeMenu.Action(key);
+            //    Console.Clear();
+            //}
         }
 
         void ChangeSelectedVote(Vote vote)
@@ -262,7 +271,7 @@ namespace VoteProject.Managers
             if (vote.Status == VoteStatus.Preparation)
             {
                 Console.WriteLine("Вы уверены, что хотите опубликовать это голосование? Отменить это действие будет невозможно.");
-                if (FileValidator.ReadYesNo())
+                if (InputControl.ReadYesNo())
                 {
                     vote.FinishPreparation();
                 }
@@ -279,7 +288,7 @@ namespace VoteProject.Managers
             if (vote.Status == VoteStatus.Published)
             {
                 Console.WriteLine("Вы уверены, что хотите закрыть это голосование? Отменить это действие будет невозможно.");
-                if (FileValidator.ReadYesNo())
+                if (InputControl.ReadYesNo())
                 {
                     vote.Close();
                 }                
@@ -296,7 +305,7 @@ namespace VoteProject.Managers
             if (vote.Status != VoteStatus.Published)
             {
                 Console.WriteLine("Вы уверены, что хотите удалить это голосование? Отменить это действие будет невозможно.");
-                if (FileValidator.ReadYesNo())
+                if (InputControl.ReadYesNo())
                 {
                     Votes.Remove(vote);
                     SelectVote.SelectedNodeIndex--;

@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[VoteStatus]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(0, 1), 
+    [Name] NCHAR(15) NOT NULL 
+)

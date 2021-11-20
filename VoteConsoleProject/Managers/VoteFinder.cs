@@ -32,9 +32,9 @@ namespace VoteProject.Managers
         {
             List<Vote> votes = (List<Vote>)list;
             List<Vote> foundVotes = new List<Vote>();
-            for (int i = 0; i < votes.Count; i++)
+            if (answers.Count != 0 || tags.Count != 0)
             {
-                if (answers.Count != 0)
+                for (int i = 0; i < votes.Count; i++)
                 {
                     foreach (string answer in answers)
                     {
@@ -44,9 +44,6 @@ namespace VoteProject.Managers
                             break;
                         }
                     }
-                }
-                else if (tags.Count != 0)
-                {
                     foreach (string tag in tags)
                     {
                         if (votes[i].Tags.Contains(new Tag(tag)))
@@ -56,10 +53,10 @@ namespace VoteProject.Managers
                         }
                     }
                 }
-                else if (question != "")
-                {
-                    foundVotes = votes.Where(vote => vote.Question.Text.Contains(question)).ToList();
-                }
+            }
+            else if (question != "")
+            {
+                foundVotes = votes.Where(vote => vote.Question.Text.Contains(question)).ToList();
             }
             question = "";
             answers.Clear();

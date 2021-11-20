@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Vote]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Question] NVARCHAR(1000) NOT NULL, 
+    [Note] NVARCHAR(1000) NULL DEFAULT ' ',
+    [NumberOfVoters] INT NOT NULL DEFAULT 0,
+    [Created] DATETIME2 NOT NULL DEFAULT GETDATE(), 
+    [Published] DATETIME2 NULL, 
+    [Status] INT NOT NULL FOREIGN KEY REFERENCES [VoteStatus]([Id]) DEFAULT 0
+)

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteModel", "VoteModel\Vote
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VoteDb", "VoteDb\VoteDb.sqlproj", "{48C7C388-D1C9-440C-B00F-68E7CFC52F3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteDbFirst", "VoteDbFirst\VoteDbFirst.csproj", "{FB7E37BE-729A-4C62-BCE3-C47F9BFB766A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{48C7C388-D1C9-440C-B00F-68E7CFC52F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48C7C388-D1C9-440C-B00F-68E7CFC52F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48C7C388-D1C9-440C-B00F-68E7CFC52F3B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FB7E37BE-729A-4C62-BCE3-C47F9BFB766A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7E37BE-729A-4C62-BCE3-C47F9BFB766A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7E37BE-729A-4C62-BCE3-C47F9BFB766A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7E37BE-729A-4C62-BCE3-C47F9BFB766A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

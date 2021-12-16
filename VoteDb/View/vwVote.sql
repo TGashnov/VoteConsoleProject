@@ -12,3 +12,4 @@ INNER JOIN Tag ON Vote_Tag.Tag = Tag.Id
 INNER JOIN Answer ON Vote.Id = VoteId
 INNER JOIN VoteStatus ON Vote.[Status] = VoteStatus.Id
 GROUP BY Question, Note, Vote.NumberOfVoters, Created, VoteStatus.[Name]
+GO

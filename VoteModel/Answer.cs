@@ -7,7 +7,6 @@ namespace VoteModel
     public class Answer
     {
         public string AnswerText { get; set; }
-
         public int NumberOfVoters { get; set; } = 0;
 
         public Answer(string answer)

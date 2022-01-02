@@ -33,20 +33,18 @@ namespace VoteProject.Managers
         {
             get
             {
-                var votes = Votes;
                 if (isOrderByRating)
                 {
-                    votes.OrderByDescending(vote => vote.VoteRating());
+                     return Votes.OrderByDescending(vote => vote.VoteRating()).ToList();
                 }
                 if (isOrderByDateDesc)
                 {
-                    votes.OrderByDescending(vote => vote.Published);
+                    return Votes.OrderByDescending(vote => vote.Published).ToList();
                 }
                 else
                 {
-                    votes.OrderBy(vote => vote.Published);
+                    return Votes.OrderBy(vote => vote.Published).ToList();
                 }
-                return votes.ToList();
             }
         }
 
@@ -70,7 +68,7 @@ namespace VoteProject.Managers
                 new MenuAction(ConsoleKey.F5, "Голосовать", () => DoVote(SelectedVote)),
                 new MenuAction(ConsoleKey.F6, "Сортировка", ChooseSort),
                 new MenuAction(ConsoleKey.F7, "Поиск", Search),
-                new MenuAction(ConsoleKey.F8, "Опубликовать выбранное голосование",() => PostVote(SelectedVote)),
+                new MenuAction(ConsoleKey.F8, "Опубликовать голосование",() => PostVote(SelectedVote)),
                 new MenuAction(ConsoleKey.F9, "Сохранить в файл", SaveToFile),
                 new MenuAction(ConsoleKey.F10, "Загрузить из файла", LoadFromFile),
                 new MenuAction(ConsoleKey.Enter, "Просмотреть голосование", () => PrintVote(SelectedVote)),
@@ -204,6 +202,8 @@ namespace VoteProject.Managers
 
         void SortBy()
         {
+            isOrderByDateDesc = false;
+            isOrderByRating = false;
             Console.Clear();
             SortByMenu.Print();
             SortByMenu.Action(Console.ReadKey().Key);

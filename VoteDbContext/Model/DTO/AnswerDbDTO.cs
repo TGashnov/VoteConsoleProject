@@ -8,8 +8,9 @@ namespace VoteDbContext.Model.DTO
     {
         public long AnsId { get; set; }
         public string Text { get; set; }
-        public int NumberOfVoters { get; set; }
+        public int? NumberOfVoters { get; set; }
         
+        public long VoteId { get; set; }
         public VoteDbDTO Vote { get; set; }
     }
 }

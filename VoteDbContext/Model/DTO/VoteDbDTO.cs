@@ -9,7 +9,7 @@ namespace VoteDbContext.Model.DTO
         public long VoteId { get; set; }
         public string Question { get; set; }
         public string? Note { get; set; }
-        public int NumberOfVoters { get; set; }
+        public int? NumberOfVoters { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Published { get; set; }
 

@@ -10,7 +10,7 @@ using VoteDbContext.Model;
 namespace VoteDbContext.Migrations
 {
     [DbContext(typeof(VoteContext))]
-    [Migration("20211225134941_InitialCreate")]
+    [Migration("20220102130215_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,10 +39,12 @@ namespace VoteDbContext.Migrations
             modelBuilder.Entity("VoteDbContext.Model.DTO.AnswerDbDTO", b =>
                 {
                     b.Property<long>("AnsId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasColumnName("Id");
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("NumberOfVoters")
+                    b.Property<int?>("NumberOfVoters")
                         .HasColumnType("int")
                         .HasColumnName("NumberOfVoters");
 
@@ -51,7 +53,13 @@ namespace VoteDbContext.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("Text");
 
+                    b.Property<long>("VoteId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("VoteId");
+
                     b.HasKey("AnsId");
+
+                    b.HasIndex("VoteId");
 
                     b.ToTable("Answer");
                 });
@@ -85,14 +93,14 @@ namespace VoteDbContext.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 12, 25, 17, 49, 40, 847, DateTimeKind.Local).AddTicks(2609))
+                        .HasDefaultValue(new DateTime(2022, 1, 2, 17, 2, 15, 480, DateTimeKind.Local).AddTicks(5906))
                         .HasColumnName("Created");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(1000)")
                         .HasColumnName("Note");
 
-                    b.Property<int>("NumberOfVoters")
+                    b.Property<int?>("NumberOfVoters")
                         .HasColumnType("int")
                         .HasColumnName("NumberOfVoters");
 
@@ -152,7 +160,7 @@ namespace VoteDbContext.Migrations
                 {
                     b.HasOne("VoteDbContext.Model.DTO.VoteDbDTO", "Vote")
                         .WithMany("Answers")
-                        .HasForeignKey("AnsId")
+                        .HasForeignKey("VoteId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

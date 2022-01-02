@@ -41,8 +41,8 @@ namespace VoteDbContext.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Question = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(1000)", nullable: true),
-                    NumberOfVoters = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2021, 12, 25, 17, 49, 40, 847, DateTimeKind.Local).AddTicks(2609)),
+                    NumberOfVoters = table.Column<int>(type: "int", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2022, 1, 2, 17, 2, 15, 480, DateTimeKind.Local).AddTicks(5906)),
                     Published = table.Column<DateTime>(type: "datetime", nullable: true),
                     VoteStatus = table.Column<int>(type: "int", nullable: false)
                 },
@@ -63,46 +63,52 @@ namespace VoteDbContext.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    NumberOfVoters = table.Column<int>(type: "int", nullable: false)
+                    NumberOfVoters = table.Column<int>(type: "int", nullable: true),
+                    VoteId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Answer", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Answer_Vote_Id",
-                        column: x => x.Id,
+                        name: "FK_Answer_Vote_VoteId",
+                        column: x => x.VoteId,
                         principalTable: "Vote",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "TagVote",
+                name: "TagDbDTOVoteDbDTO",
                 columns: table => new
                 {
-                    TagId = table.Column<long>(type: "bigint", nullable: false),
-                    VoteId = table.Column<long>(type: "bigint", nullable: false)
+                    TagsTagId = table.Column<long>(type: "bigint", nullable: false),
+                    VotesVoteId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TagVote", x => new { x.TagId, x.VoteId });
+                    table.PrimaryKey("PK_TagDbDTOVoteDbDTO", x => new { x.TagsTagId, x.VotesVoteId });
                     table.ForeignKey(
-                        name: "FK_TagVote_Tag_TagId",
-                        column: x => x.TagId,
+                        name: "FK_TagDbDTOVoteDbDTO_Tag_TagsTagId",
+                        column: x => x.TagsTagId,
                         principalTable: "Tag",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TagVote_Vote_VoteId",
-                        column: x => x.VoteId,
+                        name: "FK_TagDbDTOVoteDbDTO_Vote_VotesVoteId",
+                        column: x => x.VotesVoteId,
                         principalTable: "Vote",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TagVote_VoteId",
-                table: "TagVote",
+                name: "IX_Answer_VoteId",
+                table: "Answer",
                 column: "VoteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TagDbDTOVoteDbDTO_VotesVoteId",
+                table: "TagDbDTOVoteDbDTO",
+                column: "VotesVoteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vote_VoteStatus",
@@ -116,7 +122,7 @@ namespace VoteDbContext.Migrations
                 name: "Answer");
 
             migrationBuilder.DropTable(
-                name: "TagVote");
+                name: "TagDbDTOVoteDbDTO");
 
             migrationBuilder.DropTable(
                 name: "Tag");

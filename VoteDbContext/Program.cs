@@ -32,7 +32,7 @@ namespace VoteDbContext
         {
             using (var context = CreateContext())
             {
-                context.Add(AddMockVote()); //почему-то на этом моменте выдает ошибку, что сущность AnsId уже отслеживается, и не может продолжить
+                context.Add(AddMockVote());
                 context.SaveChanges();
             }
         }
@@ -65,6 +65,7 @@ namespace VoteDbContext
                     }
                     Console.WriteLine("Тэги:");
                     Console.WriteLine(string.Format(", ", vote.Tags));
+                    Console.WriteLine(new string('-', Console.WindowWidth));
                 }
             }
         }

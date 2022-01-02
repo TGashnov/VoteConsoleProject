@@ -28,9 +28,13 @@ namespace VoteDbContext.Model.Configure
                 .HasColumnType("int")
                 .HasColumnName("NumberOfVoters");
 
+            builder.Property(x => x.VoteId)
+                .HasColumnType("bigint")
+                .HasColumnName("VoteId");
+
             builder.HasOne(ans => ans.Vote)
                 .WithMany(v => v.Answers)
-                .HasForeignKey(ans => ans.AnsId)
+                .HasForeignKey(ans => ans.VoteId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

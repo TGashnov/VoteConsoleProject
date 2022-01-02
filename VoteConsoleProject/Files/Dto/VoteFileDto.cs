@@ -10,6 +10,9 @@ namespace VoteConsoleProject.Files.Dto
     [XmlType(TypeName = "Vote")]
     public class VoteFileDto
     {
+        [XmlAttribute("Id")]
+        public long Id { get; set; }
+
         [XmlAttribute("Question")]
         public string Question { get; set; }
         public string Note { get; set; }
@@ -21,7 +24,7 @@ namespace VoteConsoleProject.Files.Dto
         public DateTime Published { get; set; }
         public VoteStatus Status { get; set; }
 
-        [XmlAttribute("number")]
+        [XmlAttribute("NumberOfVoters")]
         public int NumberOfVoters { get; set; }
 
         public AnswerFileDto[] Answers { get; set; }
@@ -34,11 +37,12 @@ namespace VoteConsoleProject.Files.Dto
                 Question = vote.Question.Text,
                 Note = vote.Question.Note,
                 Created = vote.Created,
-                Published = vote.Published,
+                Published = (DateTime)vote.Published,
                 Status = vote.Status,
                 NumberOfVoters = vote.NumberOfVotersForVote,
                 Answers = vote.Answers.Select(answer => AnswerFileDto.Map(answer)).ToArray(),
-                Tags = vote.Tags.Select(tag => TagFileDto.Map(tag)).ToArray()
+                Tags = vote.Tags.Select(tag => TagFileDto.Map(tag)).ToArray(),
+                Id = vote.Id
             };
         }
 
@@ -52,6 +56,7 @@ namespace VoteConsoleProject.Files.Dto
                 vote.Created,
                 vote.Published,
                 vote.NumberOfVoters,
+                vote.Id,
                 vote.Note
                 );            
         }

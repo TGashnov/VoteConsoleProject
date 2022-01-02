@@ -400,5 +400,7 @@ namespace VoteProject.Managers
                 return;
             }
         }
+
+        public IEnumerable<Vote> GetVotes() => Votes;
     }
 }

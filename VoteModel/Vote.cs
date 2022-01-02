@@ -7,15 +7,12 @@ namespace VoteModel
 {
     public class Vote 
     {
+        public long Id { get; set; }
         public Question Question { get; } = new Question();
-
         public List<Answer> Answers { get; } = new List<Answer>();
-
         public List<Tag> Tags { get; } = new List<Tag>();
-
         public DateTime Created { get; } = DateTime.Now;
-        public DateTime Published { get; private set; }
-
+        public DateTime? Published { get; private set; }
         public int NumberOfVotersForVote { get; private set; } = 0;
 
         ////private double voteRating;
@@ -48,7 +45,7 @@ namespace VoteModel
             FinishPreparation();
         }
 
-        public Vote(string question, List<Answer> answers, List<Tag> tags, VoteStatus status, DateTime created, DateTime published, int number, string note = null)
+        public Vote(string question, List<Answer> answers, List<Tag> tags, VoteStatus status, DateTime created, DateTime? published, int number, long id, string note = null)
         {
             Question.Text = question;
             Question.Note = note;
@@ -58,6 +55,7 @@ namespace VoteModel
             Created = created;
             if(status != VoteStatus.Preparation) Published = published;
             NumberOfVotersForVote = number;
+            Id = id;
         }
 
         public double VoteRating()
@@ -83,7 +81,7 @@ namespace VoteModel
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Дата создания: " + Created.ToLocalTime() + "\n");
-            if (Published != null) sb.Append("Дата публикации: " + Published.ToLocalTime() + "\n");
+            if (Published != null) sb.Append("Дата публикации: " + Published?.ToLocalTime() + "\n");
             sb.Append("Рейтинг данного голосования: " + VoteRating() + "\n");
             sb.Append("Статус: " + VoteStatusRus.Names[Status] + "\n");
             sb.Append(Question.Text + "\n");

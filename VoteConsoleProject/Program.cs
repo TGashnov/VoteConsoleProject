@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VoteConsoleProject.DB;
 using VoteConsoleProject.Mocks;
 using VoteConsoleProject.UserInterface;
 using VoteModel;
@@ -9,18 +10,30 @@ namespace VoteConsoleProject
 {
     class Program
     {
+        static Program()
+        {
+            if (useMocks)
+            {
+                voteController = new VoteController(MocksFabric.MockVotes);
+            }
+            else
+            {
+                voteController = new VoteController(DbManager.GetVotes());
+            }
+        }
+
         static VoteController voteController;
         static SelectFromList<Vote> SelectVote { get; } = new SelectFromList<Vote>(() => (List<Vote>)voteController.ReccomendedVotes());
         static Vote SelectedVote => SelectVote.SelectedNode;
-
-        static Program()
-        {
-            voteController = new VoteController(MocksFabric.MockVotes);
-        }
+        const bool useMocks = false;
 
         static void Main(string[] args)
         {
             MainMenuInput();
+            if(!useMocks)
+            {
+                DbManager.UpdateVotes(voteController.GetVotes());
+            }
         }
 
         static readonly Menu mainMenu = new Menu(new List<MenuItem>(SelectVote.Menu.Items) {

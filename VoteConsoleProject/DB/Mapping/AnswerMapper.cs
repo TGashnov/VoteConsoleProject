@@ -20,6 +20,7 @@ namespace VoteConsoleProject.DB.Mapping
                 num = (int)ans.NumberOfVoters;
 
             return new Answer(
+                ans.AnsId,
                 ans.Text,
                 num
                 );
@@ -32,6 +33,7 @@ namespace VoteConsoleProject.DB.Mapping
 
             return new AnswerDbDTO()
             {
+                AnsId = ans.AnsId,
                 Text = ans.AnswerText,
                 NumberOfVoters = ans.NumberOfVoters
             };

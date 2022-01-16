@@ -42,7 +42,7 @@ namespace VoteDbContext.Migrations
                     Question = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     NumberOfVoters = table.Column<int>(type: "int", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2022, 1, 2, 17, 2, 15, 480, DateTimeKind.Local).AddTicks(5906)),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2022, 1, 15, 17, 58, 26, 446, DateTimeKind.Local).AddTicks(3664)),
                     Published = table.Column<DateTime>(type: "datetime", nullable: true),
                     VoteStatus = table.Column<int>(type: "int", nullable: false)
                 },

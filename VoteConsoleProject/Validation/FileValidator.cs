@@ -45,7 +45,7 @@ namespace VoteConsoleProject.Validation
                 Environment.CurrentDirectory, Path.DirectorySeparatorChar);
             while (true)
             {
-                Console.Write("Введите путь к файлу: ", Path.DirectorySeparatorChar);
+                Console.Write("Введите имя файла: ", Path.DirectorySeparatorChar);
                 var fileName = Console.ReadLine();
                 if (File.Exists(fileName))
                 {

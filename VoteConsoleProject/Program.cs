@@ -52,7 +52,7 @@ namespace VoteConsoleProject
                 mainMenu.Print();
                 voteController.table.Print(voteController.ReccomendedVotes(), SelectedVote);
                 ConsoleKey key = Console.ReadKey().Key;
-                if (key == ConsoleKey.Escape) return;
+                if (key == ConsoleKey.Escape) break;
                 mainMenu.Action(key);
             }
         }

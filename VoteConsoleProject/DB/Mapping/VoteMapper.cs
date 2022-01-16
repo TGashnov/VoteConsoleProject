@@ -43,6 +43,7 @@ namespace VoteConsoleProject.DB.Mapping
 
             return new VoteDbDTO()
             {
+                VoteId = vote.Id,
                 Question = vote.Question.Text,
                 Answers = vote.Answers.Select(ans => AnswerMapper.Map(ans)).ToList(),
                 Tags = vote.Tags.Select(t => TagMapper.Map(t)).ToList(),

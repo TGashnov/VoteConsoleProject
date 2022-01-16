@@ -13,7 +13,9 @@ namespace VoteConsoleProject.DB.Mapping
             if (tag == null)
                 return null;
 
-            return new Tag(tag.Text);
+            return new Tag(
+                tag.TagId,
+                tag.Text);
         }
 
         public static TagDbDTO Map(Tag tag)
@@ -23,6 +25,7 @@ namespace VoteConsoleProject.DB.Mapping
 
             return new TagDbDTO()
             {
+                TagId = tag.TagId,
                 Text = tag.TagText
             };
         }

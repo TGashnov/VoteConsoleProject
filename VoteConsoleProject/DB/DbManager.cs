@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using VoteModel;
 using System.Linq;
 using VoteConsoleProject.DB.Mapping;
+using VoteDbContext.Model.DTO;
 
 namespace VoteConsoleProject.DB
 {
@@ -51,7 +52,9 @@ namespace VoteConsoleProject.DB
                             context.Update(VoteMapper.Map(vote));
                         }
                         else
+                        {
                             context.Remove(voteInDb);
+                        }
                     }
                     context.SaveChanges();
 

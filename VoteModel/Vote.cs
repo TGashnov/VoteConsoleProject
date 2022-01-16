@@ -41,8 +41,15 @@ namespace VoteModel
             Question.Note = note;
             Answers = answers.ToList();
             Tags = tags.ToList();
-            Status = status;
-            FinishPreparation();
+            if (status == VoteStatus.Published || status == VoteStatus.Closed) 
+            {
+                FinishPreparation();
+                if (status == VoteStatus.Closed) Close();
+            }
+            else
+            {
+                Status = status;
+            }
         }
 
         public Vote(string question, List<Answer> answers, List<Tag> tags, VoteStatus status, DateTime created, DateTime? published, int number, long id, string note = null)

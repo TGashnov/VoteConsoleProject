@@ -10,7 +10,7 @@ using VoteDbContext.Model;
 namespace VoteDbContext.Migrations
 {
     [DbContext(typeof(VoteContext))]
-    [Migration("20220102130215_InitialCreate")]
+    [Migration("20220115135826_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,7 +93,7 @@ namespace VoteDbContext.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2022, 1, 2, 17, 2, 15, 480, DateTimeKind.Local).AddTicks(5906))
+                        .HasDefaultValue(new DateTime(2022, 1, 15, 17, 58, 26, 446, DateTimeKind.Local).AddTicks(3664))
                         .HasColumnName("Created");
 
                     b.Property<string>("Note")

@@ -91,7 +91,7 @@ namespace VoteDbContext.Migrations
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2022, 1, 2, 17, 2, 15, 480, DateTimeKind.Local).AddTicks(5906))
+                        .HasDefaultValue(new DateTime(2022, 1, 15, 17, 58, 26, 446, DateTimeKind.Local).AddTicks(3664))
                         .HasColumnName("Created");
 
                     b.Property<string>("Note")

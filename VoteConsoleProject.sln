@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteConsoleProject", "VoteC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteModel", "VoteModel\VoteModel.csproj", "{D235DC8C-6EC1-4F85-8114-076C3F05C5E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteDbContext", "VoteDbContext\VoteDbContext.csproj", "{11BCB3E5-B10E-4F71-A42C-E693AC457F0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteDbContext", "VoteDbContext\VoteDbContext.csproj", "{11BCB3E5-B10E-4F71-A42C-E693AC457F0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

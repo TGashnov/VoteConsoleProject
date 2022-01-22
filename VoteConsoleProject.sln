@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteModel", "VoteModel\Vote
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteDbContext", "VoteDbContext\VoteDbContext.csproj", "{11BCB3E5-B10E-4F71-A42C-E693AC457F0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteWebApi", "VoteWebApi\VoteWebApi.csproj", "{EF80A2E1-512A-44D9-9EED-E3A28637EB05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{11BCB3E5-B10E-4F71-A42C-E693AC457F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11BCB3E5-B10E-4F71-A42C-E693AC457F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11BCB3E5-B10E-4F71-A42C-E693AC457F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF80A2E1-512A-44D9-9EED-E3A28637EB05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF80A2E1-512A-44D9-9EED-E3A28637EB05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF80A2E1-512A-44D9-9EED-E3A28637EB05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF80A2E1-512A-44D9-9EED-E3A28637EB05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

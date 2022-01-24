@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +14,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VoteDbContext.Model;
+using VoteDbContext.Model.DTO;
 using VoteWebApi.BL;
+using VoteWebApi.BL.Auth;
 
 namespace VoteWebApi
 {
@@ -33,6 +36,16 @@ namespace VoteWebApi
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.AddIdentity<UserDbDTO, IdentityRole>(options =>
+            {
+                options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultProvider;
+            })
+                .AddEntityFrameworkStores<VoteContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddScoped<IUserClaimsPrincipalFactory<UserDbDTO>,
+                AdditionalUserClaimsPrincipalFactory>();
+
             services.AddVoteRepositories();
             services.AddVoteServices();
 
@@ -42,6 +55,9 @@ namespace VoteWebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Vote Api" });
             });
+
+            services.AddScoped<IdentityDataInitializer>();
+            services.AddHostedService<SetupIdentityDataInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +79,7 @@ namespace VoteWebApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

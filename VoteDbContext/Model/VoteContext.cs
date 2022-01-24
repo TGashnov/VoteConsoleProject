@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using VoteDbContext.Model.DTO;
 
 namespace VoteDbContext.Model
 {
-    public class VoteContext : DbContext
+    public class VoteContext : IdentityDbContext<UserDbDTO>
     {
         public VoteContext(DbContextOptions options) : base(options) { }
 
@@ -30,6 +31,7 @@ namespace VoteDbContext.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new AnswerConfig());
             modelBuilder.ApplyConfiguration(new TagConfig());
             modelBuilder.ApplyConfiguration(new VoteConfig());

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,10 @@ using VoteWebApi.BL.Services;
 
 namespace VoteWebApi.Controllers
 {
+    [Authorize(Roles ="Admin,User")]
     [Route("api/[controller]")]
     [ApiController]
-    public class VoteController : Controller
+    public class VoteController : ControllerBase
     {
         readonly VotesService service;
 
@@ -60,6 +62,7 @@ namespace VoteWebApi.Controllers
             return Ok(vote);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: VoteController
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] VoteApiDto vote)
@@ -72,6 +75,7 @@ namespace VoteWebApi.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         // PUT: VoteController/5/status/(publish || close)
         [HttpPut("{id}/status/{status}")]
         public async Task<ActionResult> PutStatus(int id, string status)
@@ -112,6 +116,7 @@ namespace VoteWebApi.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] VoteApiDto vote)
         {
@@ -156,6 +161,7 @@ namespace VoteWebApi.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         // DELETE: VoteController/Delete/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<VoteApiDto>> Delete(long id)

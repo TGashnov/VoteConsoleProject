@@ -52,6 +52,11 @@ namespace VoteDbContext.Model.Configure
 
             builder.HasMany(v => v.Tags)
                 .WithMany(t => t.Votes);
+
+            builder.HasOne(v => v.User)
+                .WithMany(u => u.Votes)
+                .HasForeignKey(v => v.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

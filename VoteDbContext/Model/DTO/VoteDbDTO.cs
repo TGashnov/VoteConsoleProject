@@ -18,5 +18,8 @@ namespace VoteDbContext.Model.DTO
 
         public int VoteStatusId { get; set; }
         public VoteStatusDbDTO VoteStatus { get; set; } 
+
+        public string UserId { get; set; }
+        public UserDbDTO User { get; set; }
     }
 }
